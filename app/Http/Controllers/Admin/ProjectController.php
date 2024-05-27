@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -29,7 +30,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
+
+
     }
 
     /**
@@ -54,9 +59,10 @@ class ProjectController extends Controller
 
         Project::create($validated);
 
-
         //redirect
         return to_route('admin.projects.index')->with('message', 'Project created successfully');
+
+
     }
 
     /**
