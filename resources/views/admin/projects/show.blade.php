@@ -20,6 +20,10 @@
                     <h4 class="text-muted">description</h4>
                 
                     <p>{{ $project->description }}</p>
+                    <div class="metadata">
+                        <strong>Type project: </strong>{{$project->type ? $project->type->name : 'not specified'}}
+                    </div>
+
                     
                 </div>
             </div>
